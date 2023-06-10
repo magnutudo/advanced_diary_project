@@ -1,0 +1,33 @@
+<div class="card-body px-0 pb-2">
+  <div class="table-responsive">
+    <table class="table align-items-center mb-0">
+      <thead>
+      <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Название</th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Категория
+        </th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+          Приоритет
+        </th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+          Статус
+        </th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+          Дата
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{task.id}}</td>
+        <td>{{task.title}}</td>
+        <td>{{task.category.title}}</td>
+        <td>{{task.priority.title}}</td>
+        <td>{{task.completed}}</td>
+        <td>{{task.date | date}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
