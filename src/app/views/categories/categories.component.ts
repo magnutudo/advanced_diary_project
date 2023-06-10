@@ -14,10 +14,10 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categories = this.dataService.getCategories()
+    this.dataService.categoriesSubject.subscribe(categories => this.categories = categories)
   }
 
   showTasksCategory(category: Category) {
-    this.dataService.getTasksByCategory(category)
+    this.dataService.fillTasksByCategory(category)
   }
 }
