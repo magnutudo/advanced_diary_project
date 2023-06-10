@@ -8,7 +8,8 @@ import {Category} from "../../model/Category";
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  categories:Category[]
+  categories: Category[]
+
   constructor(private dataService: DataHandlerService) {
   }
 
@@ -16,4 +17,7 @@ export class CategoriesComponent implements OnInit {
     this.categories = this.dataService.getCategories()
   }
 
+  showTasksCategory(category: Category) {
+    this.dataService.getTasksByCategory(category)
+  }
 }
