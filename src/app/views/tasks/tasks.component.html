@@ -11,21 +11,21 @@
           Приоритет
         </th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-          Статус
+          Дата
         </th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-          Дата
+          Статус
         </th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let task of tasks">
-        <td>{{task.id}}</td>
+      <tr *ngFor="let task of tasks; let i = index">
+        <td>{{i + 1}}</td>
         <td>{{task.title}}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{task.category != null ? task.category.title : "Нет категории"}}</td>
+        <td>{{task.priority != null ? task.priority.title : "Нет приоритета"}}</td>
+        <td>{{task.date != null ? (task.date | date:'short') : "Нет даты" }}</td>
+        <td>{{task.completed}}</td>
       </tr>
       </tbody>
     </table>
