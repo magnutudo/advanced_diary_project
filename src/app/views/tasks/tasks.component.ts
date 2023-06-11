@@ -18,4 +18,8 @@ export class TasksComponent implements OnInit {
       this.tasks = tasks
     })
   }
+
+  taskCompleted(task: Task) {
+    task.completed = !task.completed
+  }
 }
