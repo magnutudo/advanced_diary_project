@@ -19,11 +19,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let task of tasks; let i = index" [class.completed]="task.completed">
+      <tr *ngFor="let task of tasks; let i = index" [class.completed]="task.completed" [class.without]= "task.category == null && task.priority == null && task.date == null" >
         <td>{{i + 1}}</td>
         <td>{{task.title}}</td>
-        <td>{{task.category != null ? task.category.title : "Нет категории"}}</td>
-        <td>{{task.priority != null ? task.priority.title : "Нет приоритета"}}</td>
+        <td
+          >{{task.category != null ? task.category.title : "Нет категории"}}</td>
+        <td
+          >{{task.priority != null ? task.priority.title : "Нет приоритета"}}</td>
         <td>{{task.date != null ? (task.date | date:'short') : "Нет даты" }}</td>
         <input
           (click)="taskCompleted(task)"
