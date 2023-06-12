@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Task} from "../../model/Task";
 import {DataHandlerService} from "../../service/data-handler.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-tasks',
@@ -8,18 +9,45 @@ import {DataHandlerService} from "../../service/data-handler.service";
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  tasks: Task[]
+  public displayedColumns: string[] = ['color', 'id', 'title', 'date', 'priority', 'category'];
+  public dataSource: MatTableDataSource<Task>;
+
+
+  tasks: Task[];
 
   constructor(private dataHandler: DataHandlerService) {
   }
 
-  ngOnInit(): void {
-    this.dataHandler.tasksSubject.subscribe(tasks => {
-      this.tasks = tasks
-    })
+  ngOnInit() {
+    this.dataHandler.tasksSubject.subscribe(tasks => this.tasks = tasks);
+
+
+    this.dataSource = new MatTableDataSource();
+
+    this.refreshTable();
   }
 
-  taskCompleted(task: Task) {
-    task.completed = !task.completed
+
+  toggleTaskCompleted(task: Task) {
+    task.completed = !task.completed;
+  }
+
+
+  getPriorityColor(task: Task) {
+
+    if (task.priority && task.priority.color) {
+      return task.priority.color;
+    }
+
+    return '#fff';
+
+  }
+
+
+  private refreshTable() {
+
+    this.dataSource.data = this.tasks;
+
+
   }
 }
