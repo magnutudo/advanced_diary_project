@@ -1,6 +1,6 @@
 <div class="card-body px-0 pb-2">
   <div class="table-responsive">
-    <table [dataSource]="dataSource" mat-table>
+    <table [dataSource]="dataSource" mat-table matSort>
 
 
       <ng-container matColumnDef="color">
@@ -8,7 +8,6 @@
         <td *matCellDef="let task" [style.background-color]="getPriorityColor(task)"
             mat-cell></td>
       </ng-container>
-
 
 
       <ng-container matColumnDef="id">
@@ -21,7 +20,7 @@
 
 
       <ng-container matColumnDef="title">
-        <th style="text-align: center" *matHeaderCellDef mat-header-cell> Название</th>
+        <th style="text-align: center" *matHeaderCellDef mat-header-cell mat-sort-header> Название</th>
         <td class="color-title" *matCellDef="let task" [class.completed]="task.completed" mat-cell>
 
           {{task.title}}
@@ -30,7 +29,7 @@
       </ng-container>
 
       <ng-container matColumnDef="date">
-        <th *matHeaderCellDef mat-header-cell> Срок</th>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Срок</th>
         <td *matCellDef="let task" [ngClass]="{'completed': task.completed, 'nodate': task.date == null}"
             mat-cell>
 
@@ -41,7 +40,7 @@
 
 
       <ng-container matColumnDef="priority">
-        <th *matHeaderCellDef mat-header-cell> Приоритет</th>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Приоритет</th>
         <td *matCellDef="let task"
             [ngClass]="{'completed': task.completed, 'nopriority': task.priority == null}"
             mat-cell
@@ -55,7 +54,7 @@
 
       !--категория-->
       <ng-container matColumnDef="category">
-        <th *matHeaderCellDef mat-header-cell> Категория</th>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> Категория</th>
         <td *matCellDef="let task"
             [ngClass]="{'completed': task.completed, 'nocategory': task.category == null, 'link': !task.completed && task.category}"
             mat-cell
@@ -74,5 +73,6 @@
       <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
     </table>
+    <mat-paginator [pageSizeOptions]="[10,20,40,60]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
