@@ -8,9 +8,13 @@
   text-decoration: line-through;
   color: #646c77;
 }
-.without td{
+
+.without td {
   color: #bec0c5;
 }
-.color-title{
+
+.color-title {
   text-align: center;
 }
+
+
