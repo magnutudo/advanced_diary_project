@@ -15,17 +15,22 @@ export class TasksComponent implements OnInit {
   public dataSource: MatTableDataSource<Task>;
 
 
-  @Input() tasks: Task[];
   @ViewChild(MatPaginator, {static: false}) private paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) private sort: MatSort;
 
   constructor(private dataHandler: DataHandlerService) {
   }
 
+  tasks: Task[];
 
+  @Input("tasks")
+  set setTasks(tasks: Task[]) {
+    this.tasks = tasks
+    this.fillTable()
+  }
 
   ngOnInit() {
-  /*  this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks)*/
+    /*  this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks)*/
 
 
     this.dataSource = new MatTableDataSource();
@@ -52,7 +57,9 @@ export class TasksComponent implements OnInit {
 
   fillTable() {
 
-
+    if (!this.dataSource) {
+      return
+    }
     this.dataSource.data = this.tasks;
     this.addTableObjects();
 

@@ -11,6 +11,7 @@ import {Category} from "./model/Category";
 export class AppComponent implements OnInit {
   tasks: Task[]
   categories: Category[]
+  selectedCategory: Category
 
   constructor(private dataService: DataHandlerService) {
   }
@@ -18,5 +19,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getAllTasks().subscribe(tasks => this.tasks = tasks)
     this.dataService.getAllCategories().subscribe(categories => this.categories = categories)
+  }
+
+  onSelect(category: Category) {
+    this.selectedCategory = category
+    this.dataService.searchTasks(category, null, null, null).subscribe(tasks => this.tasks = tasks)
+
   }
 }

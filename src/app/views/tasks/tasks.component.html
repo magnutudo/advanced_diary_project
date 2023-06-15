@@ -1,7 +1,6 @@
-
-  <div class="card-body px-0 pb-2">
-    <div class="table-responsive">
-      <ng-container *ngIf="tasks;else error">
+<div class="card-body px-0 pb-2">
+  <div class="table-responsive">
+    <ng-container *ngIf="tasks &&tasks.length>0;else error">
       <table [dataSource]="dataSource" mat-table matSort>
 
 
@@ -75,15 +74,15 @@
         <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
       </table>
-      </ng-container>
-      <mat-paginator [pageSizeOptions]="[10,20,40,60]" showFirstLastButtons></mat-paginator>
-    </div>
+    </ng-container>
+    <mat-paginator [pageSizeOptions]="[10,20,40,60]" showFirstLastButtons></mat-paginator>
   </div>
+</div>
 
-  <ng-template  #error >
-    <p style="text-align: center; color: #6f42c1; margin-top: 20px; font-size: 30px">  Нет данных</p>
+<ng-template #error>
+  <p style="text-align: center; color: #6f42c1; margin-top: 20px; font-size: 30px"> Нет данных</p>
 
-  </ng-template>
+</ng-template>
 
 
 
