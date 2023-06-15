@@ -217,7 +217,7 @@
 
     <div class="row mb-4">
 
-      <app-tasks [tasks]="tasks"></app-tasks>
+      <app-tasks (selectedTask)="onTasks($event)" [tasks]="tasks"></app-tasks>
     </div>
 
     <footer class="footer py-4  ">

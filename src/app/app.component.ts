@@ -26,4 +26,8 @@ export class AppComponent implements OnInit {
     this.dataService.searchTasks(category, null, null, null).subscribe(tasks => this.tasks = tasks)
 
   }
+
+  onTasks(task: Task) {
+    console.log(task.title)
+  }
 }
