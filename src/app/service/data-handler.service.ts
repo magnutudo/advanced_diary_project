@@ -13,6 +13,7 @@ import {Priority} from "../model/Priority";
 export class DataHandlerService {
   private tasksDaoArray = new TaskDAOArray()
   private categoryDaoArray = new CategoryDAOArray()
+  private priorityDaoArray = new CategoryDAOArray()
 
   getAllTasks(): Observable<Task[]> {
     return this.tasksDaoArray.getAll()

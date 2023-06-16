@@ -108,7 +108,7 @@ export class TestData {
 
     {
       id: 12,
-      title: 'Сходить на лекцию "Как научиться программировать на Java"',
+      title: 'Сходить на лекцию "Как научиться программировать на Js"',
       priority: TestData.priorities[1],
       completed: false,
       category: TestData.categories[2]
@@ -131,7 +131,7 @@ export class TestData {
 
     {
       id: 15,
-      title: 'Сдать экзамен по Java',
+      title: 'Сдать экзамен по Angular',
       priority: TestData.priorities[2],
       completed: true
     },
@@ -139,7 +139,7 @@ export class TestData {
 
     {
       id: 16,
-      title: 'Положить 100 000 р в банк на депозит',
+      title: 'Положить 10 000 р в банк на депозит',
       priority: TestData.priorities[3],
       completed: false,
       category: TestData.categories[6]

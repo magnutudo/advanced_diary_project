@@ -15,6 +15,15 @@
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
+  <mat-form-field class="widi2">
+    <mat-label>Укажите категорию</mat-label>
+    <mat-select [(ngModel)]="tmpCategory">
+      <mat-option [value]="null">Нет категории</mat-option>
+      <mat-option *ngFor="let ctgr of categories" [value]="ctgr">
+        {{ctgr.title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
   <div class="flex">
@@ -25,10 +34,10 @@
       [disabled]="inputTitle.value.trim().length==0"
 
     >
-      Сохранить</button>
+      Сохранить
+    </button>
     <button mat-raised-button (click)="onCancel()">Отмена</button>
   </div>
-
 
 
 </mat-dialog-actions>
