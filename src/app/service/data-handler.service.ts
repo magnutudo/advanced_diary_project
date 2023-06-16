@@ -22,6 +22,10 @@ export class DataHandlerService {
     return this.categoryDaoArray.getAll()
   }
 
+  updateTask(task: Task): Observable<Task> {
+    return this.tasksDaoArray.update(task)
+  }
+
   searchTasks(category: Category, text: string, status: boolean, priority: Priority): Observable<Task[]> {
     return this.tasksDaoArray.search(category, text, status, priority)
   }

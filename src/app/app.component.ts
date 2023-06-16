@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Task} from "./model/Task";
 import {DataHandlerService} from "./service/data-handler.service";
 import {Category} from "./model/Category";
+import {switchMap} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,12 @@ export class AppComponent implements OnInit {
   }
 
   onTasks(task: Task) {
-    console.log(task.title)
+    this.dataService.updateTask(task).pipe(
+      switchMap(() => this.dataService.searchTasks(
+        this.selectedCategory, null, null, null
+      ))
+    ).subscribe(tasks => {
+      this.tasks = tasks;
+    });
   }
 }

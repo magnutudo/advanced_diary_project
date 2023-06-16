@@ -1,0 +1,10 @@
+.widi{
+  width: 100%;
+}
+.flex{
+
+ display: flex;
+  gap: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
