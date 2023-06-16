@@ -98,7 +98,7 @@ export class TasksComponent implements OnInit {
     const dialogRef = this.dialog.open(EditTaskDialogComponent,
 
       {
-        height: '400px',
+        height: '300px',
         width:'600px',
         data: [task, "Редактирование задачи"],
         autoFocus: false
