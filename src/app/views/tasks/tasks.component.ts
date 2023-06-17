@@ -25,6 +25,7 @@ export class TasksComponent implements OnInit {
 
   @Output() selectedTask = new EventEmitter<Task>()
   tasks: Task[];
+  @Output() deleteTask = new EventEmitter<Task>()
 
   @Input("tasks")
   set setTasks(tasks: Task[]) {
@@ -99,11 +100,15 @@ export class TasksComponent implements OnInit {
 
       {
         height: '450px',
-        width:'600px',
+        width: '600px',
         data: [task, "Редактирование задачи"],
         autoFocus: false
       })
     dialogRef.afterClosed().subscribe(res => {
+      if (res === "delete") {
+        this.deleteTask.emit(task)
+        return;
+      }
       if (res as Task) {
         this.selectedTask.emit(task)
         return

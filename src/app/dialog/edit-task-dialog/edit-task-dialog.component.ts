@@ -4,6 +4,7 @@ import {Task} from "../../model/Task";
 import {Category} from "../../model/Category";
 import {DataHandlerService} from "../../service/data-handler.service";
 import {Priority} from "../../model/Priority";
+import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'app-edit-task-dialog',
@@ -28,9 +29,7 @@ export class EditTaskDialogComponent implements OnInit {
   tmpCategory: Category
   tmpPriority: Priority
 
-  ngOnInit()
-    :
-    void {
+  ngOnInit(): void {
     this.dialogTitle = this.data[1];
     this.task = this.data[0]
     this.tmpTitle = this.task.title
@@ -50,5 +49,21 @@ export class EditTaskDialogComponent implements OnInit {
 
   onCancel() {
     this.dialogRef.close(null)
+  }
+
+  delete() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '500px',
+      data: {
+        dialogTitle: "Подтвердите действие",
+        message: `Вы действительно хотите удалить задачу : "${this.task.title}"?`
+      },
+      autoFocus: false
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.dialogRef.close("delete")
+      }
+    })
   }
 }
