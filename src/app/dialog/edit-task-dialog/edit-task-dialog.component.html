@@ -23,6 +23,16 @@
         {{ctgr.title}}
       </mat-option>
     </mat-select>
+
+  </mat-form-field>
+  <mat-form-field class="widi2">
+    <mat-label>Укажите приоритет</mat-label>
+    <mat-select [(ngModel)]="tmpPriority">
+      <mat-option [value]="null">Без приоритета</mat-option>
+      <mat-option *ngFor="let prt of priorities" [value]="prt">
+        {{prt.title}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
