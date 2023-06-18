@@ -43,9 +43,9 @@ export class TasksComponent implements OnInit {
   }
 
 
-  toggleTaskCompleted(task: Task) {
+ /* toggleTaskCompleted(task: Task) {
     task.completed = !task.completed;
-  }
+  }*/
 
 
   getPriorityColor(task: Task) {

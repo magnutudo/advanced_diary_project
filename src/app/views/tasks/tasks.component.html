@@ -67,6 +67,19 @@
 
           </td>
         </ng-container>
+        <ng-container matColumnDef="operations">
+          <th *matHeaderCellDef></th>
+          <td class="col-operations" mat-cell *matCellDef="let task" [class.completed]="task.completed">
+            <button mat-icon-button (click)="openDeleteDialog(task)"
+                    class="delete-icon">
+              <mat-icon aria-hidden="false">delete</mat-icon>
+            </button>
+            <button mat-icon-button (click)="openEditDialog(task)"
+                    class="edit-icon">
+              <mat-icon aria-hidden="false">edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
 
 
         <!--  заголовок таблицы-->
@@ -77,6 +90,7 @@
 
       </table>
     </ng-container>
+
     <mat-paginator [pageSizeOptions]="[10,20,40,60]" showFirstLastButtons></mat-paginator>
   </div>
 </div>

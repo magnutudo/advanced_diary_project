@@ -17,4 +17,33 @@
   text-align: center;
 }
 
+.delete-icon {
+  cursor: pointer;
+  color: darkred;
+  font-size: 18px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
 
+.edit-icon {
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 18px;
+  margin-left: 3px;
+  margin-right: 3px;
+
+}
+
+.mat-header-cell {
+  font-size: 1.063rem;
+  color: hotpink !important;
+  font-weight: normal;
+}
+
+.col-select {
+  width: 3%;
+}
+
+.col-operations {
+  width: 8%;
+}
