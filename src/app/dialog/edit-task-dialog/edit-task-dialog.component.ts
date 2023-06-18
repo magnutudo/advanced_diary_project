@@ -26,6 +26,7 @@ export class EditTaskDialogComponent implements OnInit {
   protected
   task: Task
   tmpTitle: string;
+  tmpDate: Date
   tmpCategory: Category
   tmpPriority: Priority
   tmpCompleted: boolean
@@ -34,6 +35,7 @@ export class EditTaskDialogComponent implements OnInit {
     this.dialogTitle = this.data[1];
     this.task = this.data[0]
     this.tmpTitle = this.task.title
+    this.tmpDate = this.task.date
     this.tmpCompleted = this.task.completed
     this.tmpCategory = this.task.category
     this.tmpPriority = this.task.priority
@@ -47,6 +49,7 @@ export class EditTaskDialogComponent implements OnInit {
     this.task.title = this.tmpTitle
     this.task.category = this.tmpCategory
     this.task.priority = this.tmpPriority
+    this.task.date = this.tmpDate
     this.task.completed = this.tmpCompleted
     this.dialogRef.close(this.task)
   }
