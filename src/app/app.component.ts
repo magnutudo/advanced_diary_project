@@ -10,51 +10,73 @@ import {switchMap} from "rxjs";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  tasks: Task[]
-  categories: Category[]
+  title = 'Todo';
+  tasks: Task[];
+  categories: Category[];
 
-  selectedCategory: Category
+   selectedCategory: Category = null;
 
-  constructor(private dataService: DataHandlerService) {
+
+  constructor(
+    private dataHandler: DataHandlerService,
+  ) {
   }
 
   ngOnInit(): void {
-    this.dataService.getAllTasks().subscribe(tasks => this.tasks = tasks)
-    this.dataService.getAllCategories().subscribe(categories => this.categories = categories)
-  }
 
-  onSelect(category: Category) {
-    this.selectedCategory = category
-    this.dataService.searchTasks(category, null, null, null).subscribe(tasks => this.tasks = tasks)
+    this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
+
+    this.onSelectCategory(null);
 
   }
 
-  onTasks(task: Task) {
-    this.dataService.updateTask(task).pipe(
-      switchMap(() => this.dataService.searchTasks(
-        this.selectedCategory, null, null, null
-      ))
+
+
+   onSelectCategory(category: Category) {
+
+    this.selectedCategory = category;
+
+    this.dataHandler.searchTasks(
+      this.selectedCategory,
+      null,
+      null,
+      null
     ).subscribe(tasks => {
       this.tasks = tasks;
     });
+
   }
 
-  onDeleteTask(task: Task) {
-    this.dataService.deleteTask(task.id).subscribe(() => {
-      this.dataService.searchTasks(
+
+   onUpdateTask(task: Task) {
+
+    this.dataHandler.updateTask(task).subscribe(() => {
+      this.dataHandler.searchTasks(
         this.selectedCategory,
         null,
         null,
         null
       ).subscribe(tasks => {
-        this.tasks = tasks
-      })
-    })
+        this.tasks = tasks;
+      });
+    });
 
   }
 
-  onSelectTaskCategory(task: Task) {
-    this.selectedCategory = task.category
-    this.dataService.searchTasks(task.category, null, null, null).subscribe(tasks => this.tasks = tasks)
+
+   onDeleteTask(task: Task) {
+
+    this.dataHandler.deleteTask(task.id).subscribe(() => {
+      this.dataHandler.searchTasks(
+        this.selectedCategory,
+        null,
+        null,
+        null
+      ).subscribe(tasks => {
+        this.tasks = tasks;
+      });
+    });
+
+
   }
 }

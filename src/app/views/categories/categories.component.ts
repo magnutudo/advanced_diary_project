@@ -8,23 +8,33 @@ import {Category} from "../../model/Category";
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  @Input() categories: Category[]
-  @Output() selectCategory = new EventEmitter<Category>();
   @Input()
-  selectedCategory: Category
+  categories: Category[];
 
-  constructor(private dataService: DataHandlerService) {
+
+  @Output()
+  selectCategory = new EventEmitter<Category>();
+
+  @Input()
+  selectedCategory: Category;
+
+  constructor(private dataHandler: DataHandlerService) {
   }
 
-  ngOnInit(): void {
 
+  ngOnInit() {
+    // this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
   }
 
-  showTasksCategory(category: Category) {
+
+  showTasksByCategory(category: Category): void {
+
+
     if (this.selectedCategory === category) {
-      return
+      return;
     }
+
     this.selectedCategory = category
-    this.selectCategory.emit(this.selectedCategory)
+    this.selectCategory.emit(this.selectedCategory);
   }
 }

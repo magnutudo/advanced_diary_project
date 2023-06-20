@@ -50,7 +50,6 @@ export class EditTaskDialogComponent implements OnInit {
     this.task.category = this.tmpCategory
     this.task.priority = this.tmpPriority
     this.task.date = this.tmpDate
-    this.task.completed = this.tmpCompleted
     this.dialogRef.close(this.task)
   }
 

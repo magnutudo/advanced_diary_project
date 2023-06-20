@@ -63,7 +63,7 @@
               mat-cell
           >
             <a href="#"
-               (click)=" !task.completed && task.category &&  showSelectedTasksByCategory(task)">  {{task.category ? task.category.title : "Без категории"}}</a>
+               (click)=" !task.completed && task.category &&  onSelectCategory(task)">  {{task.category ? task.category.title : "Без категории"}}</a>
           </td>
         </ng-container>
         <ng-container matColumnDef="operations">
@@ -73,7 +73,7 @@
                     class="delete-icon">
               <mat-icon aria-hidden="false">delete</mat-icon>
             </button>
-            <button mat-icon-button (click)="openEditDialog(task)"
+            <button mat-icon-button (click)="openEditTaskDialog(task)"
                     class="edit-icon">
               <mat-icon aria-hidden="false">edit</mat-icon>
             </button>
@@ -83,8 +83,8 @@
           <th *matHeaderCellDef></th>
           <td class="col-select text-right" mat-cell *matCellDef="let task">
             <mat-checkbox
-              (click)="$event.stopPropagation()"
               (change)="$event ? onToggleStatus(task):null"
+              (click)="$event.stopPropagation()"
               [checked]="task.completed"
             >
 
