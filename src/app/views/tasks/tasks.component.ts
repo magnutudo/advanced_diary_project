@@ -25,6 +25,7 @@ export class TasksComponent implements OnInit {
   }
 
   @Output() selectedTask = new EventEmitter<Task>()
+  @Output() selectedTaskCategory = new EventEmitter<Task>()
   tasks: Task[];
   @Output() deleteTask = new EventEmitter<Task>()
 
@@ -154,5 +155,9 @@ export class TasksComponent implements OnInit {
   onToggleStatus(task: Task) {
     task.completed = !task.completed
     this.selectedTask.emit(task)
+  }
+
+  showSelectedTasksByCategory(task: Task) {
+    this.selectedTaskCategory.emit(task)
   }
 }

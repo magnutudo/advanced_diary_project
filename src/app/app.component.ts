@@ -51,4 +51,8 @@ export class AppComponent implements OnInit {
     })
 
   }
+
+  onSelectTaskCategory(task: Task) {
+    this.dataService.searchTasks(task.category, null, null, null).subscribe(tasks => this.tasks = tasks)
+  }
 }

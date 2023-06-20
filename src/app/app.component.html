@@ -218,6 +218,7 @@
     <div class="row mb-4">
 
       <app-tasks
+        (selectedTaskCategory)="onSelectTaskCategory($event)"
         (selectedTask)="onTasks($event)"
         (deleteTask)="onDeleteTask($event)"
         [tasks]="tasks"></app-tasks>

@@ -57,14 +57,13 @@
 
         !--категория-->
         <ng-container matColumnDef="category">
-          <th *matHeaderCellDef mat-header-cell mat-sort-header> Категория</th>
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Категория</th>
           <td *matCellDef="let task"
               [ngClass]="{'completed': task.completed, 'nocategory': task.category == null, 'link': !task.completed && task.category}"
               mat-cell
           >
-
-            {{task.category ? task.category.title : "Без категории"}}
-
+            <a href="#"
+               (click)="showSelectedTasksByCategory(task)">  {{task.category ? task.category.title : "Без категории"}}</a>
           </td>
         </ng-container>
         <ng-container matColumnDef="operations">
