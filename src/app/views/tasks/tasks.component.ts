@@ -49,7 +49,10 @@ export class TasksComponent implements OnInit {
      task.completed = !task.completed;
    }*/
 
-
+  /*ngAfterViewInit() {
+    this.addTableObjects()
+  }
+*/
   getPriorityColor(task: Task) {
 
     if (task.priority && task.priority.color) {
@@ -141,14 +144,28 @@ export class TasksComponent implements OnInit {
         autoFocus: false
       })
     dialogRef.afterClosed().subscribe(res => {
-      if (res === "delete") {
-        this.deleteTask.emit(task)
+      if (res === 'complete') {
+        task.completed = true; // ставим статус задачи как выполненная
+        this.selectedTask.emit(task);
+      }
+
+
+      if (res === 'activate') {
+        task.completed = false; // возвращаем статус задачи как невыполненная
+        this.selectedTask.emit(task);
         return;
       }
-      if (res as Task) {
-        this.selectedTask.emit(task)
-        return
+
+      if (res === 'delete') {
+        this.deleteTask.emit(task);
+        return;
       }
+
+      if (res as Task) { // если нажали ОК и есть результат
+        this.selectedTask.emit(task);
+        return;
+      }
+
     })
   }
 

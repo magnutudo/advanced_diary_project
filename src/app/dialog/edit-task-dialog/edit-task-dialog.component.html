@@ -65,12 +65,12 @@
     <button mat-raised-button (click)="onCancel()">Отмена</button>
     <button
       *ngIf="task.completed;else button2" mat-button
-      (click)="tmpCompleted = !tmpCompleted; onConfirm()"
+      (click)="activate()"
     >Активировать задачу
     </button>
     <ng-template #button2>
       <button mat-button
-              (click)="tmpCompleted = !tmpCompleted; onConfirm()"
+              (click)="complete()" *ngIf="!task.completed"
       >
         Завершить задачу
       </button>
