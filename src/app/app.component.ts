@@ -12,6 +12,7 @@ import {switchMap} from "rxjs";
 export class AppComponent implements OnInit {
   tasks: Task[]
   categories: Category[]
+
   selectedCategory: Category
 
   constructor(private dataService: DataHandlerService) {
@@ -53,6 +54,7 @@ export class AppComponent implements OnInit {
   }
 
   onSelectTaskCategory(task: Task) {
+    this.selectedCategory = task.category
     this.dataService.searchTasks(task.category, null, null, null).subscribe(tasks => this.tasks = tasks)
   }
 }

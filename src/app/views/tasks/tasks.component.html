@@ -63,7 +63,7 @@
               mat-cell
           >
             <a href="#"
-               (click)="showSelectedTasksByCategory(task)">  {{task.category ? task.category.title : "Без категории"}}</a>
+               (click)=" !task.completed && task.category &&  showSelectedTasksByCategory(task)">  {{task.category ? task.category.title : "Без категории"}}</a>
           </td>
         </ng-container>
         <ng-container matColumnDef="operations">

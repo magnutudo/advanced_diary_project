@@ -10,6 +10,7 @@ import {Category} from "../../model/Category";
 export class CategoriesComponent implements OnInit {
   @Input() categories: Category[]
   @Output() selectCategory = new EventEmitter<Category>();
+  @Input()
   selectedCategory: Category
 
   constructor(private dataService: DataHandlerService) {
