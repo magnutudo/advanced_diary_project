@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   tasks: Task[];
   categories: Category[];
 
-   selectedCategory: Category = null;
+  selectedCategory: Category = null;
 
 
   constructor(
@@ -31,8 +31,7 @@ export class AppComponent implements OnInit {
   }
 
 
-
-   onSelectCategory(category: Category) {
+  onSelectCategory(category: Category) {
 
     this.selectedCategory = category;
 
@@ -48,7 +47,7 @@ export class AppComponent implements OnInit {
   }
 
 
-   onUpdateTask(task: Task) {
+  onUpdateTask(task: Task) {
 
     this.dataHandler.updateTask(task).subscribe(() => {
       this.dataHandler.searchTasks(
@@ -64,7 +63,7 @@ export class AppComponent implements OnInit {
   }
 
 
-   onDeleteTask(task: Task) {
+  onDeleteTask(task: Task) {
 
     this.dataHandler.deleteTask(task.id).subscribe(() => {
       this.dataHandler.searchTasks(
@@ -78,5 +77,11 @@ export class AppComponent implements OnInit {
     });
 
 
+  }
+
+  onUpdateCategory(category: Category) {
+    this.dataHandler.updateCategory(category).pipe(
+      switchMap(() => this.dataHandler.getAllCategories())
+    ).subscribe(ctg => this.categories = ctg)
   }
 }
