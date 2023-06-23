@@ -9,7 +9,14 @@ export class CategoryDAOArray implements CategoryDAO {
   }
 
   delete(id: number): Observable<Category> {
-    return undefined;
+    TestData.tasks.forEach(task => {
+      if (task.category && task.category.id === id) {
+        task.category = null
+      }
+    })
+    const tmpCategory = TestData.categories.find(tsk => tsk.id === id)
+    TestData.categories.splice(TestData.categories.indexOf(tmpCategory), 1)
+    return of(tmpCategory)
   }
 
   get(id: number): Observable<Category> {

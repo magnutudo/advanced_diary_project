@@ -80,8 +80,15 @@ export class AppComponent implements OnInit {
   }
 
   onUpdateCategory(category: Category) {
-    this.dataHandler.updateCategory(category).pipe(
-      switchMap(() => this.dataHandler.getAllCategories())
-    ).subscribe(ctg => this.categories = ctg)
+    this.dataHandler.updateCategory(category).subscribe(() => {
+      this.onSelectCategory(this.selectedCategory)
+    })
+  }
+
+  onDeleteCategory(category: Category) {
+    this.dataHandler.deleteCategory(category).subscribe(() => {
+      this.selectedCategory = null
+      this.onSelectCategory(this.selectedCategory)
+    })
   }
 }

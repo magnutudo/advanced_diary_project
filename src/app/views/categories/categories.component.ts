@@ -11,15 +11,17 @@ import {EditCategoryDialogComponent} from "../../dialog/edit-category-dialog/edi
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  @Input()
-  categories: Category[];
-  @Output() updateCategory = new EventEmitter<Category>();
-  indexMouseMove: number
-  @Output()
-  selectCategory = new EventEmitter<Category>();
+  @Output() deleteCategory = new EventEmitter<Category>()
 
-  @Input()
-  selectedCategory: Category;
+  @Input() categories: Category[];
+
+  @Output() updateCategory = new EventEmitter<Category>();
+
+  indexMouseMove: number
+
+  @Output() selectCategory = new EventEmitter<Category>();
+
+  @Input() selectedCategory: Category;
 
   constructor(private dataHandler: DataHandlerService, private dialog: MatDialog) {
   }
@@ -59,6 +61,11 @@ export class CategoriesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(ctg => {
       if (ctg as Category) {
         this.updateCategory.emit(ctg)
+        return;
+      }
+      if (ctg === "delete") {
+        this.deleteCategory.emit(ctg)
+        return
 
       }
     })
