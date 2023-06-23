@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DataHandlerService} from "../../service/data-handler.service";
 import {Category} from "../../model/Category";
+import {DialogRef} from "@angular/cdk/dialog";
+import {MatDialog} from "@angular/material/dialog";
+import {EditCategoryDialogComponent} from "../../dialog/edit-category-dialog/edit-category-dialog.component";
 
 @Component({
   selector: 'app-categories',
@@ -10,15 +13,15 @@ import {Category} from "../../model/Category";
 export class CategoriesComponent implements OnInit {
   @Input()
   categories: Category[];
-
-
+  @Output() updateCategory = new EventEmitter<Category>();
+  indexMouseMove: number
   @Output()
   selectCategory = new EventEmitter<Category>();
 
   @Input()
   selectedCategory: Category;
 
-  constructor(private dataHandler: DataHandlerService) {
+  constructor(private dataHandler: DataHandlerService, private dialog: MatDialog) {
   }
 
 
@@ -36,5 +39,28 @@ export class CategoriesComponent implements OnInit {
 
     this.selectedCategory = category
     this.selectCategory.emit(this.selectedCategory);
+  }
+
+  protected readonly indexedDB = indexedDB;
+
+  showIcon(indx: number) {
+    this.indexMouseMove = indx
+    console.log(this.indexMouseMove)
+
+  }
+
+  openEditDialog(category: Category) {
+    const dialogRef = this.dialog.open(EditCategoryDialogComponent, {
+      width: "500px",
+      height: "300px",
+      data: [category, "Редактирование категории"],
+      autoFocus: false
+    })
+    dialogRef.afterClosed().subscribe(ctg => {
+      if (ctg as Category) {
+        this.updateCategory.emit(ctg)
+
+      }
+    })
   }
 }

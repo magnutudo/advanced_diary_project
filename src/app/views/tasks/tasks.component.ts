@@ -61,14 +61,14 @@ export class TasksComponent implements OnInit {
 
     // цвет завершенной задачи
     if (task.completed) {
-      return '#F8F9FA'; // TODO вынести цвета в константы (magic strings, magic numbers)
+      return '#F8F9FA';
     }
 
     if (task.priority && task.priority.color) {
       return task.priority.color;
     }
 
-    return '#fff'; // TODO вынести цвета в константы (magic strings, magic numbers)
+    return '#fff';
 
   }
 

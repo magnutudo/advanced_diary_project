@@ -10,7 +10,7 @@ import {switchMap} from "rxjs";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Todo';
+
   tasks: Task[];
   categories: Category[];
 

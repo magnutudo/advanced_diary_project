@@ -15,11 +15,22 @@
         <span class="all-category-title">Все</span>
       </a>
     </li>
-    <li class="nav-item active" *ngFor="let category of categories" (click)="showTasksByCategory(category)"
+    <li class="nav-item pointer" *ngFor="let category of categories;let indx = index"
+        (click)="showTasksByCategory(category)"
         [class.active]="category === selectedCategory"
+        (mouseenter)="showIcon(indx)"
+        (mouseleave)="showIcon(null)"
+
     >
       <a class="nav-link text-white  bg-gradient-primary">
-        <span class="nav-link-text ms-1">{{category.title }}</span>
+        <span class="category-title">{{category.title }}</span>
+        <span class="edit-category-icon-area">
+          <mat-icon
+            *ngIf="indexMouseMove === indx"
+            (click)="$event.stopPropagation();openEditDialog(category)"
+            class="edit-category-icon"
+          >edit</mat-icon>
+        </span>
       </a>
     </li>
   </ul>
