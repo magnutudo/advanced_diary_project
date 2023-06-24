@@ -5,9 +5,9 @@
     <input matInput
            class="widi"
            #inputElement
-           [(ngModel)]="Tmpcategory">
-    <button mat-button matSuffix aria-label="Clear" *ngIf="Tmpcategory.trim().length > 0"
-            (click)="Tmpcategory = '' ">
+           [(ngModel)]="categoryTitle">
+    <button mat-button matSuffix aria-label="Clear" *ngIf="categoryTitle.trim().length > 0"
+            (click)="categoryTitle = '' ">
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
