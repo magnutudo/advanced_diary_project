@@ -32,8 +32,8 @@ export class DataHandlerService {
     return this.tasksDaoArray.update(task)
   }
 
-  deleteCategory(category: Category): Observable<Category> {
-    return this.categoryDaoArray.delete(category.id)
+  deleteCategory(id: number): Observable<Category> {
+    return this.categoryDaoArray.delete(id)
   }
 
   updateCategory(category: Category): Observable<Category> {

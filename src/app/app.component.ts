@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Task} from "./model/Task";
 import {DataHandlerService} from "./service/data-handler.service";
 import {Category} from "./model/Category";
-import {switchMap} from "rxjs";
+
 
 @Component({
   selector: 'app-root',
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
   }
 
   onDeleteCategory(category: Category) {
-    this.dataHandler.deleteCategory(category).subscribe(() => {
+    this.dataHandler.deleteCategory(category.id).subscribe(() => {
       this.selectedCategory = null
       this.onSelectCategory(this.selectedCategory)
     })

@@ -55,19 +55,21 @@ export class CategoriesComponent implements OnInit {
     const dialogRef = this.dialog.open(EditCategoryDialogComponent, {
       width: "500px",
       height: "300px",
-      data: [category, "Редактирование категории"],
+      data: [category.title, "Редактирование категории"],
       autoFocus: false
     })
-    dialogRef.afterClosed().subscribe(ctg => {
-      if (ctg as Category) {
-        this.updateCategory.emit(ctg)
-        return;
-      }
-      if (ctg === "delete") {
-        this.deleteCategory.emit(ctg)
+    dialogRef.afterClosed().subscribe(res => {
+      if (res === "delete") {
+        this.deleteCategory.emit(category)
         return
 
       }
+      if (typeof (res) === "string") {
+        category.title = res as string
+        this.updateCategory.emit(category)
+        return;
+      }
+
     })
   }
 }

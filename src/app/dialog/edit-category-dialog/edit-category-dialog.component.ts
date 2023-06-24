@@ -12,30 +12,30 @@ export class EditCategoryDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<EditCategoryDialogComponent>,
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) private data: [Category, string]
+    @Inject(MAT_DIALOG_DATA) private data: [string, string]
   ) {
   }
 
   dialogTitle: string
-  category: Category
-  Tmpcategory: string
+  categoryTitle: string
 
 
   ngOnInit(): void {
+    this.categoryTitle = this.data[0]
     this.dialogTitle = this.data[1]
-    this.category = this.data[0]
-    this.Tmpcategory = this.category.title
+
 
   }
 
   onConfirm() {
-    this.category.title = this.Tmpcategory
-    this.dialogRef.close(this.category)
+
+    this.dialogRef.close(this.categoryTitle)
+
 
   }
 
   onCancel() {
-    this.dialogRef.close()
+    this.dialogRef.close(false)
   }
 
   delete() {
@@ -43,13 +43,14 @@ export class EditCategoryDialogComponent implements OnInit {
       maxWidth: '500px',
       data: {
         dialogTitle: "Подтвердите действие",
-        message: `Вы действительно хотите удалить категорию : "${this.category.title}"?`
+        message: `Вы действительно хотите удалить категорию : "${this.categoryTitle}"?`
       },
       autoFocus: false
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.dialogRef.close("delete")
+        this.dialogRef.close('delete')
+
       }
     })
 
